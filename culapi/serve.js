@@ -58,11 +58,12 @@ app.delete('/calculator/:id', (req,res)=>{
 // 덧셈 계산
 app.post('/calculator/:id/add', (req,res)=>{
     const {id} = req.params;
+    const val = req.body;
     const {value1, value2}=req.body;
     if(!Calculator[id]){
         res.status(404).json({error:"Calculator not found"});
     }
-    else if(!value1 || !value2){
+    else if(!value1 || !value2 || Object.keys(val).length !==2){
         res.status(404).json({error:"need two value."});
     }
     else{
@@ -91,11 +92,12 @@ app.post('/calculator/:id/sub', (req,res)=>{
 // 곱셈 계산
 app.post('/calculator/:id/mul', (req,res)=>{
     const {id} = req.params;
+    const val = req.body;
     const {value1, value2}=req.body;
     if(!Calculator[id]){
         res.status(404).json({error:"Calculator not found"});
     }
-    else if(!value1 || !value2){
+    else if(!value1 || !value2 || Object.keys(val).length !==2){
         res.status(404).json({error:"need two value."});
     }
     else{
